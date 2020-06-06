@@ -126,6 +126,34 @@ bool tune_socket(int sock, bool is_unix)
 	if (!ok)
 		goto fail;
 
+
+	/*
+	 * Maximum datagram queue length on Unix domain sockets
+	 */
+	if (is_unix && cf_unix_socket_max_dgram_qlen) {
+		errpos = "setsockopt/SO_MAX_DGRAM_QLEN";
+		val = cf_unix_socket_max_dgram_qlen;
+#ifdef SO_MAX_DGRAM_QLEN
+		res = setsockopt(sock, SOL_SOCKET, SO_MAX_DGRAM_QLEN, &val, sizeof(val));
+		if (res < 0)
+			goto fail;
+#else
+		errno = EINVAL;
+		goto fail;
+#endif
+	}
+	/*
+	 * Send buffer on Unix domain sockets
+	 */
+	if (is_unix && cf_unix_socket_send_buffer) {
+		errpos = "setsockopt/SO_SNDBUF";
+		val = cf_unix_socket_send_buffer;
+		res = setsockopt(sock, SOL_SOCKET, SO_SNDBUF, &val, sizeof(val));
+		if (res < 0)
+			goto fail;
+
+	}
+
 	/*
 	 * Following options are for network sockets
 	 */

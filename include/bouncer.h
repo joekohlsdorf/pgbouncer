@@ -511,6 +511,8 @@ extern int cf_reboot;
 extern unsigned int cf_max_packet_size;
 
 extern int cf_sbuf_loopcnt;
+extern int cf_unix_socket_max_dgram_qlen;
+extern int cf_unix_socket_send_buffer;
 extern int cf_so_reuseport;
 extern int cf_tcp_keepalive;
 extern int cf_tcp_keepcnt;

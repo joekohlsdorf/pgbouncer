@@ -763,6 +763,20 @@ PgBouncer for a long time.  One loop processes one `pkt_buf` amount of data.
 
 Default: 5
 
+### unix_socket_max_dgram_qlen
+
+Sets the receive buffer in number of datagrams on the listening Unix socket.
+
+Only supported on kernels which allow setting SO_MAX_DGRAM_QLEN.
+
+Default: Not set
+
+### unix_socket_send_buffer
+
+Sets the send buffer on the listening Unix socket.
+
+Default: Not set
+
 ### so_reuseport
 
 Specifies whether to set the socket option `SO_REUSEPORT` on TCP

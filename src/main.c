@@ -83,6 +83,8 @@ int cf_pool_mode = POOL_SESSION;
 int cf_sbuf_len;
 int cf_sbuf_loopcnt;
 int cf_so_reuseport;
+int cf_unix_socket_max_dgram_qlen;
+int cf_unix_socket_send_buffer;
 int cf_tcp_socket_buffer;
 #if defined(TCP_DEFER_ACCEPT) || defined(SO_ACCEPTFILTER)
 int cf_tcp_defer_accept = 1;
@@ -273,6 +275,8 @@ CF_ABS("resolv_conf", CF_STR, cf_resolv_conf, CF_NO_RELOAD, ""),
 CF_ABS("max_packet_size", CF_UINT, cf_max_packet_size, 0, "2147483647"),
 CF_ABS("pkt_buf", CF_INT, cf_sbuf_len, CF_NO_RELOAD, "4096"),
 CF_ABS("sbuf_loopcnt", CF_INT, cf_sbuf_loopcnt, 0, "5"),
+CF_ABS("unix_socket_max_dgram_qlen", CF_INT, cf_unix_socket_max_dgram_qlen, 0, "0"),
+CF_ABS("unix_socket_send_buffer", CF_INT, cf_unix_socket_send_buffer, 0, "0"),
 CF_ABS("tcp_defer_accept", DEFER_OPS, cf_tcp_defer_accept, 0, NULL),
 CF_ABS("tcp_socket_buffer", CF_INT, cf_tcp_socket_buffer, 0, "0"),
 CF_ABS("tcp_keepalive", CF_INT, cf_tcp_keepalive, 0, "1"),
